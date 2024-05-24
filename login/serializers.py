@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Register
         fields = ['id', 'name', 'email', 'password', 'confirmpassword', 'role']
-        extra_kwargs = {'password': {'write_only': False}}  # แก้ไข write_only เป็น False เพื่อให้แสดงรหัสผ่านได้
+        extra_kwargs = {'password': {'write_only': False}} 
 
     def validate(self, data):
         if data['password'] != data['confirmpassword']:
