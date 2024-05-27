@@ -13,9 +13,9 @@ class Register(models.Model):
     role = models.CharField(max_length=10, choices=ROLES, default='user')
 
     def save(self, *args, **kwargs):
-        if not self.pk: 
+        if not self.pk or not self.password.startswith('pbkdf2_sha256$'):
             self.password = make_password(self.password)
-        super(Register, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

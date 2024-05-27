@@ -3,7 +3,7 @@ from django.urls import path, include
 # from login import views
 # from login.views import RegisterUpdate1
 from login.views import RegisterView, LoginView, UserDetailView, UsersGet
-from register.views import username, RegisterUpdate
+from register.views import username, RegisterUpdate, RegisterView1, LoginView1
 from address.views import address
 
 urlpatterns = [
@@ -17,7 +17,9 @@ urlpatterns = [
     path('registers/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('user/<str:email>/', UserDetailView.as_view(), name='user-detail'),
-    path('userget/', UsersGet.as_view())
+    path('userget/', UsersGet.as_view()),
+    path('register1s/', RegisterView1.as_view()),
+    path('logins/', LoginView1.as_view(), name='login'),
     
 
 ]

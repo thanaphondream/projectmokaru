@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Register
         fields = ['id', 'name', 'email', 'password', 'confirmpassword', 'role']
-        extra_kwargs = {'password': {'write_only': False}} 
+        extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, data):
         if data['password'] != data['confirmpassword']:
@@ -25,3 +25,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         if 'password' in validated_data:
             validated_data['password'] = make_password(validated_data['password'])
         return super().update(instance, validated_data)
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Register
+        fields = ['email', 'password']
+        # extra_kwargs = {'password': {'write_only': True}}
+        
+class Rge(serializers.ModelSerializer):
+    class Meta:
+        model = Register
+        fields = ['id', 'name', 'email', 'password', 'role']
